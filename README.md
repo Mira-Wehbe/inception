@@ -72,10 +72,6 @@ NGINX is the only container exposed to the outside - everything else is internal
 
 A VM is a full computer running inside your computer  it has its own OS, takes minutes to start, and uses a lot of RAM and disk. Docker is much lighter because containers share the host's kernel instead of running a full OS. You get the same isolation for services like a web server or database, but without all the overhead.
 
-### Secrets vs Environment Variables
-
-Environment variables (in `.env`) are simple key=value pairs you pass to your containers. They work fine for things like domain names or usernames, but passwords stored this way are visible through `docker inspect`. Docker secrets are more secure because the value is never exposed directly. In this project everything is in `.env`, which is git-ignored so it never reaches the repository.
-
 ### Docker Network vs Host Network
 
 With a custom Docker network, containers are isolated from the outside world and can only talk to each other through the network you define. They reach each other by service name, so WordPress just uses `mariadb` as the hostname to connect to the database. Host network skips all that and shares the host's network directly, which removes isolation and is forbidden in this project.
